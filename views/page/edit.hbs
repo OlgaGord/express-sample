@@ -1,0 +1,34 @@
+<script>tinymce.init({
+        selector: '[name="content"]',
+        plagins: "code"
+    });
+
+
+</script>
+{{#with page}}
+<form action="/{{pageKey}}/edit" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="pageKey" value="{{pageKey}}" />
+    <div>
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" value="{{title}}" />
+        </div>
+        <div>
+            <ul>
+                {{#each ../errors.title}}
+                <li>{{this}}</li>
+
+                {{/each}}
+            </ul>
+            <label for="content">Content</label>
+            {{#each ../errors.content}}
+            <li>{{this}}</li>
+
+            {{/each}}
+            <textarea name="content">{{title}}</textarea>
+        </div>
+        <div><input type="submit" value="Save" /></div>
+    </div>
+
+</form>
+{{/with}}
